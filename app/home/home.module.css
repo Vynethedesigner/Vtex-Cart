@@ -827,12 +827,14 @@
   .desktopFooterInner {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 40px 80px 32px;
+    padding: 40px 80px;
     display: flex;
-    gap: 80px;
+    justify-content: space-between;
   }
   .desktopFooterLeft {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 628px;
   }
   .desktopFooterLogo {
     height: 32px;
@@ -840,8 +842,8 @@
     display: block;
   }
   .desktopFooterEmail {
-    color: #34C5F5;
-    font-size: 13px;
+    color: #35A5C7;
+    font-size: 14px;
     display: block;
     margin-bottom: 8px;
     text-decoration: none;
@@ -849,32 +851,37 @@
   .desktopFooterEmail:hover { text-decoration: underline; }
   .desktopFooterHours {
     font-size: 12px;
-    color: #b0b8c4;
+    color: #ffffff;
     line-height: 1.5;
+  }
+  .desktopFooterColumns {
+    display: flex;
+    gap: 24px;
   }
   .desktopFooterCol {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    min-width: 120px;
+    min-width: 240px;
   }
   .desktopFooterColTitle {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: #ffffff;
     margin: 0 0 4px;
+    line-height: 23px;
   }
   .desktopFooterLink {
-    font-size: 13px;
-    color: #b0b8c4;
+    font-size: 14px;
+    color: #ffffff;
     text-decoration: none;
   }
-  .desktopFooterLink:hover { color: #ffffff; }
+  .desktopFooterLink:hover { color: #35A5C7; }
   .desktopFooterBottom {
     max-width: 1440px;
     margin: 0 auto;
     padding: 20px 80px;
-    border-top: 1px solid rgba(255,255,255,0.12);
+    border-top: 1px solid #E9E9E9;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -885,18 +892,24 @@
   }
   .desktopFooterSocials svg { cursor: pointer; opacity: 0.7; }
   .desktopFooterSocials svg:hover { opacity: 1; }
+  .desktopFooterRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
   .desktopFooterCopyright {
     font-size: 12px;
-    color: #b0b8c4;
+    color: #ffffff;
   }
   .desktopFooterLegal {
     display: flex;
-    gap: 20px;
+    gap: 12px;
   }
   .desktopFooterLegal a {
     font-size: 12px;
-    color: #b0b8c4;
+    color: #35A5C7;
     text-decoration: none;
   }
-  .desktopFooterLegal a:hover { color: #ffffff; }
+  .desktopFooterLegal a:hover { text-decoration: underline; }
 }

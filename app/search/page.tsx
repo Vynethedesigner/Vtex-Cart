@@ -219,17 +219,19 @@ function DesktopFooter() {
           <div className={styles.desktopFooterHours}>9:00AM - 5:30PM</div>
           <div className={styles.desktopFooterHours}>Mondays to Fridays (except Public Holidays)</div>
         </div>
-        <div className={styles.desktopFooterCol}>
-          <h4 className={styles.desktopFooterColTitle}>Support</h4>
-          <a href="#" className={styles.desktopFooterLink}>FAQ</a>
-          <a href="#" className={styles.desktopFooterLink}>Shipping &amp; Returns</a>
-          <a href="#" className={styles.desktopFooterLink}>Payments</a>
-          <a href="#" className={styles.desktopFooterLink}>Your Orders</a>
-        </div>
-        <div className={styles.desktopFooterCol}>
-          <h4 className={styles.desktopFooterColTitle}>About</h4>
-          <a href="#" className={styles.desktopFooterLink}>Our company</a>
-          <a href="#" className={styles.desktopFooterLink}>Become a Seller</a>
+        <div className={styles.desktopFooterColumns}>
+          <div className={styles.desktopFooterCol}>
+            <h4 className={styles.desktopFooterColTitle}>Support</h4>
+            <a href="#" className={styles.desktopFooterLink}>FAQ</a>
+            <a href="#" className={styles.desktopFooterLink}>Shipping &amp; Returns</a>
+            <a href="#" className={styles.desktopFooterLink}>Payments</a>
+            <a href="#" className={styles.desktopFooterLink}>Your Orders</a>
+          </div>
+          <div className={styles.desktopFooterCol}>
+            <h4 className={styles.desktopFooterColTitle}>About</h4>
+            <a href="#" className={styles.desktopFooterLink}>Our company</a>
+            <a href="#" className={styles.desktopFooterLink}>Become a Seller</a>
+          </div>
         </div>
       </div>
       <div className={styles.desktopFooterBottom}>
@@ -238,10 +240,12 @@ function DesktopFooter() {
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="white" strokeWidth="1.2"/><path d="M6 9V14M6 6V6.01M10 14V10C10 8.9 10.9 8 12 8C13.1 8 14 8.9 14 10V14" stroke="white" strokeWidth="1.2" strokeLinecap="round"/></svg>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="5" stroke="white" strokeWidth="1.2"/><circle cx="10" cy="10" r="4" stroke="white" strokeWidth="1.2"/><circle cx="15" cy="5" r="1" fill="white"/></svg>
         </div>
-        <div className={styles.desktopFooterCopyright}>&copy; Redcloud.Ltd All rights reserved</div>
-        <div className={styles.desktopFooterLegal}>
-          <a href="#">Privacy policy</a>
-          <a href="#">Terms</a>
+        <div className={styles.desktopFooterRight}>
+          <div className={styles.desktopFooterCopyright}>&copy; Redcloud.Ltd All rights reserved</div>
+          <div className={styles.desktopFooterLegal}>
+            <a href="#">Privacy policy</a>
+            <a href="#">Terms</a>
+          </div>
         </div>
       </div>
     </div>
