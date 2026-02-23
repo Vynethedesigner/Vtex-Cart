@@ -1,0 +1,876 @@
+/* ═══════════════════════════════════════════════════════════
+   Search / Category Listing — Mobile-first + Desktop
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Responsive helpers ── */
+.mobileOnly { display: block; }
+.desktopOnly { display: none; }
+
+/* ── Mobile Shell ── */
+.shell {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Status Bar ── */
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f1f1f;
+}
+.statusBarIcons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Mobile Header ── */
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+}
+.backBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mobileSearchWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #d0d5dd;
+  border-radius: 20px;
+  padding: 6px 12px;
+  gap: 8px;
+}
+.mobileSearchInput {
+  flex: 1;
+  font-size: 13px;
+  color: #9a9a9a;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+.mobileSearchBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #051c40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: none;
+}
+.mobileMenuBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ── Scroll Area ── */
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px;
+}
+
+/* ── Explore & Browse (category list) ── */
+.exploreTitle {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1f1f1f;
+  padding: 16px 16px 8px;
+}
+.tabBar {
+  display: flex;
+  border-bottom: 2px solid #e8e8e8;
+  margin: 0 16px;
+}
+.tab {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9a9a9a;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  position: relative;
+}
+.tabActive {
+  color: #051c40;
+  font-weight: 700;
+}
+.tabActive::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #051c40;
+  border-radius: 2px 2px 0 0;
+}
+
+/* ── Category List ── */
+.categoryList {
+  padding: 0 16px;
+}
+.categoryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+}
+.categoryRow:hover {
+  background: #f8f8f8;
+}
+.categoryName {
+  font-size: 15px;
+  font-weight: 400;
+  color: #1f1f1f;
+}
+.categoryChevron {
+  color: #9a9a9a;
+  flex-shrink: 0;
+}
+
+/* ── Subcategory back header ── */
+.subCategoryBack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  width: 100%;
+}
+.subCategoryBackName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+/* ── Product Listing Mode ── */
+.listingTitle {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f1f1f;
+  padding: 8px 16px 12px;
+}
+
+/* ── Subcategory pills (mobile) ── */
+.subcatPillRow {
+  display: flex;
+  gap: 10px;
+  padding: 0 16px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.subcatPillRow::-webkit-scrollbar { display: none; }
+.subcatPill {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+.subcatPillCircle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #e8f4f8;
+}
+.subcatPillLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: #1f1f1f;
+  text-align: center;
+  max-width: 70px;
+  line-height: 1.2;
+}
+
+/* ── Filter Bar ── */
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+}
+.filterBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 20px;
+  background: white;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: inherit;
+}
+.filterBtn:hover { background: #f8f8f8; }
+.gridToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.resultsCount {
+  padding: 4px 16px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #34C5F5;
+}
+
+/* ── Product Grid (mobile 2-col) ── */
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 16px 16px;
+}
+
+/* ── Product Card ── */
+.productCard {
+  display: flex;
+  flex-direction: column;
+}
+.productImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: #f5f5f5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.productImage {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+.addBtn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #051c40;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s;
+}
+.addBtn:hover { opacity: 0.85; }
+
+.quantityControl {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.quantityBtn {
+  width: 36px;
+  height: 36px;
+  background: #051c40;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quantityBtn:hover { opacity: 0.85; }
+.quantityValue {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f1f1f;
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.productSupplier {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin-bottom: 2px;
+}
+.productName {
+  font-size: 12px;
+  font-weight: 400;
+  color: #1f1f1f;
+  line-height: 1.3;
+  margin-bottom: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.productOptions {
+  font-size: 11px;
+  color: #626262;
+  margin-bottom: 4px;
+}
+.productPriceRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.productPrice {
+  font-size: 14px;
+  font-weight: 700;
+  color: #051c40;
+}
+.productOriginalPrice {
+  font-size: 12px;
+  color: #9a9a9a;
+  text-decoration: line-through;
+}
+.productUnit {
+  font-size: 11px;
+  color: #9a9a9a;
+  margin-bottom: 4px;
+}
+.productPricingLink {
+  font-size: 12px;
+  font-weight: 500;
+  color: #34C5F5;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+.productPricingLink:hover { text-decoration: underline; }
+
+/* ── Bottom Nav ── */
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 390px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #ffffff;
+  border-top: 1px solid #e8e8e8;
+  padding: 8px 0 12px;
+  z-index: 100;
+}
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 12px;
+  position: relative;
+  font-family: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+.navLabel {
+  font-size: 10px;
+  font-weight: 500;
+  color: #506079;
+}
+.navItemActive .navLabel {
+  color: #051c40;
+  font-weight: 700;
+}
+.navActiveIndicator {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  border-radius: 2px;
+  background: #051c40;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DESKTOP STYLES (≥ 1024px)
+   ══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+  .mobileOnly { display: none !important; }
+  .desktopOnly { display: block !important; }
+
+  .shell {
+    max-width: 100%;
+    box-shadow: none;
+  }
+
+  .scrollArea {
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .bottomNav { display: none; }
+
+  /* ── Desktop Header (same as home) ── */
+  .desktopHeaderWrap {
+    background: #051c40;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .desktopHeader {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 12px 80px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .desktopHeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .desktopLogo {
+    height: 32px;
+  }
+  .desktopLocation {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .desktopLocationText {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .desktopLocationLine1 {
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+  .desktopLocationLine2 {
+    font-size: 11px;
+    color: #b0b8c4;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .desktopLocationLine2 svg path { stroke: #b0b8c4; }
+  .desktopSearchWrap {
+    flex: 1;
+    max-width: 520px;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .desktopSearchInput {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #1f1f1f;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    background: transparent;
+  }
+  .desktopSearchInput::placeholder { color: #9a9a9a; }
+  .desktopSearchBtn {
+    width: 44px;
+    height: 40px;
+    background: #051c40;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 2px solid #0a2a5c;
+  }
+  .desktopHeaderRight {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .desktopHeaderAction {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #b0b8c4;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .desktopHeaderAction:hover { color: #ffffff; }
+  .desktopHeaderIcon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+  }
+  .desktopCategoryNav {
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .desktopCategoryInner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 80px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .desktopCategoryItem {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1f1f1f;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .desktopCategoryItem:hover {
+    color: #051c40;
+    font-weight: 600;
+  }
+  .desktopCategorySep {
+    width: 1px;
+    height: 20px;
+    background: #e8e8e8;
+    margin: 0 4px;
+  }
+
+  /* ── Breadcrumb ── */
+  .breadcrumb {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 16px 80px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #9a9a9a;
+  }
+  .breadcrumbLink {
+    color: #9a9a9a;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 0;
+  }
+  .breadcrumbLink:hover { color: #1f1f1f; }
+  .breadcrumbCurrent {
+    color: #1f1f1f;
+    font-weight: 500;
+  }
+
+  /* ── Desktop Page Title ── */
+  .desktopPageTitle {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 8px 80px 20px;
+    font-size: 28px;
+    font-weight: 800;
+    color: #1f1f1f;
+    line-height: 36px;
+  }
+
+  /* ── Desktop Subcategory Circles ── */
+  .desktopSubcatRow {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 80px 24px;
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .desktopSubcatRow::-webkit-scrollbar { display: none; }
+  .desktopSubcatItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    flex: 0 0 auto;
+  }
+  .desktopSubcatCircle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #e8f4f8;
+  }
+  .desktopSubcatLabel {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1f1f1f;
+    text-align: center;
+    max-width: 90px;
+    line-height: 1.2;
+  }
+
+  /* ── Desktop Content Layout (filter sidebar + grid) ── */
+  .desktopContentWrap {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 80px;
+    display: flex;
+    gap: 32px;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 20px;
+  }
+
+  /* ── Filter Sidebar ── */
+  .filterSidebar {
+    width: 200px;
+    flex-shrink: 0;
+  }
+  .filterSidebarTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 20px;
+  }
+  .filterAccordion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    width: 100%;
+    font-family: inherit;
+  }
+  .filterAccordionLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f1f1f;
+  }
+
+  /* ── Products Area ── */
+  .productsArea {
+    flex: 1;
+  }
+  .productsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .desktopResultsCount {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1f1f1f;
+  }
+  .sortRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sortBtn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f1f1f;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .desktopGridToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  /* ── Desktop Product Grid (4 columns) ── */
+  .productGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 0 0 40px;
+  }
+  .productCard {
+    width: auto;
+  }
+  .addBtn {
+    width: 40px;
+    height: 40px;
+  }
+  .quantityBtn {
+    width: 40px;
+    height: 40px;
+  }
+  .quantityValue {
+    width: 40px;
+    height: 40px;
+  }
+  .productSupplier {
+    font-size: 13px;
+  }
+
+  /* ── Desktop Footer ── */
+  .desktopFooter {
+    background: #051c40;
+    margin-top: 20px;
+  }
+  .desktopFooterInner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 40px 80px 32px;
+    display: flex;
+    gap: 80px;
+  }
+  .desktopFooterLeft {
+    flex: 1;
+  }
+  .desktopFooterLogo {
+    height: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .desktopFooterEmail {
+    color: #34C5F5;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+  }
+  .desktopFooterEmail:hover { text-decoration: underline; }
+  .desktopFooterHours {
+    font-size: 12px;
+    color: #b0b8c4;
+    line-height: 1.5;
+  }
+  .desktopFooterCol {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 120px;
+  }
+  .desktopFooterColTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 4px;
+  }
+  .desktopFooterLink {
+    font-size: 13px;
+    color: #b0b8c4;
+    text-decoration: none;
+  }
+  .desktopFooterLink:hover { color: #ffffff; }
+  .desktopFooterBottom {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px 80px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .desktopFooterSocials {
+    display: flex;
+    gap: 12px;
+  }
+  .desktopFooterSocials svg { cursor: pointer; opacity: 0.7; }
+  .desktopFooterSocials svg:hover { opacity: 1; }
+  .desktopFooterCopyright {
+    font-size: 12px;
+    color: #b0b8c4;
+  }
+  .desktopFooterLegal {
+    display: flex;
+    gap: 20px;
+  }
+  .desktopFooterLegal a {
+    font-size: 12px;
+    color: #b0b8c4;
+    text-decoration: none;
+  }
+  .desktopFooterLegal a:hover { color: #ffffff; }
+}

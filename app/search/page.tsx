@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import styles from './home/home.module.css';
-import { promotions, mostSold, newArrivals, HomeProduct } from './home/data';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
+import styles from './search.module.css';
+import { categories, categoryProducts, beverageSubcategories, HomeProduct } from '../home/data';
 
 /* ═══════════════════════════════════════════════════════════
    Inline SVG Icons
@@ -73,14 +74,14 @@ function BottomNav() {
   const router = useRouter();
   return (
     <div className={styles.bottomNav}>
-      <button className={`${styles.navItem} ${styles.navItemActive}`}>
-        <HomeIcon active />
+      <button className={styles.navItem} onClick={() => router.push('/')}>
+        <HomeIcon />
         <span className={styles.navLabel}>Home</span>
-        <div className={styles.navActiveIndicator} />
       </button>
-      <button className={styles.navItem} onClick={() => router.push('/search')}>
-        <SearchIcon />
+      <button className={`${styles.navItem} ${styles.navItemActive}`}>
+        <SearchIcon active />
         <span className={styles.navLabel}>Explore</span>
+        <div className={styles.navActiveIndicator} />
       </button>
       <button className={styles.navItem}>
         <WalletIcon />
@@ -101,7 +102,7 @@ function DesktopHeader() {
     <div className={styles.desktopHeaderWrap}>
       <div className={styles.desktopHeader}>
         <div className={styles.desktopHeaderLeft}>
-          <img src="/images/red101-logo.svg" alt="Red101" className={styles.desktopLogo} />
+          <img src="/images/red101-logo.svg" alt="Red101" className={styles.desktopLogo} style={{ cursor: 'pointer' }} onClick={() => router.push('/')} />
           <div className={styles.desktopLocation}>
             <svg width="16" height="20" viewBox="0 0 14 19.47" fill="none"><path fillRule="evenodd" clipRule="evenodd" d="M0 7C0 3.13 3.13 0 7 0C10.87 0 14 3.13 14 7C14 11.17 9.58 16.92 7.77 19.11C7.37 19.59 6.64 19.59 6.24 19.11C4.42 16.92 0 11.17 0 7ZM4.5 7C4.5 8.38 5.62 9.5 7 9.5C8.38 9.5 9.5 8.38 9.5 7C9.5 5.62 8.38 4.5 7 4.5C5.62 4.5 4.5 5.62 4.5 7Z" fill="#8f8f8f"/></svg>
             <div className={styles.desktopLocationText}>
@@ -135,8 +136,8 @@ function DesktopHeader() {
         <div className={styles.desktopCategoryInner}>
           <button className={styles.desktopCategoryItem}>All Suppliers <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="#1f1f1f" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
           <div className={styles.desktopCategorySep} />
-          <button className={styles.desktopCategoryItem} onClick={() => router.push('/search')}>All Categories <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="#1f1f1f" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
-          <button className={styles.desktopCategoryItem} onClick={() => router.push('/search?category=beverages')}>Beverages</button>
+          <button className={styles.desktopCategoryItem}>All Categories <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="#1f1f1f" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
+          <button className={styles.desktopCategoryItem}>Beverages</button>
           <button className={styles.desktopCategoryItem}>Grocery</button>
           <button className={styles.desktopCategoryItem}>Body Care</button>
           <button className={styles.desktopCategoryItem}>Cleaning Supplies</button>
@@ -225,122 +226,229 @@ function ProductCard({ product }: { product: HomeProduct }) {
   );
 }
 
-/* ── Product Section ── */
-function ProductSection({ title, products, sectionId }: { title: string; products: HomeProduct[]; sectionId: string }) {
+/* ═══════════════════════════════════════════════════════════
+   Main Search Page Component (with Suspense wrapper)
+   ═══════════════════════════════════════════════════════════ */
+
+function SearchPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
+  const sectionParam = searchParams.get('section');
+
+  // Determine if we should show product listing or category browse
+  const showListing = !!categoryParam || !!sectionParam;
+  const listingTitle = sectionParam
+    ? sectionParam.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+    : categoryParam
+      ? categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1)
+      : 'Beverages';
+
+  // Mobile state
+  const [activeTab, setActiveTab] = useState<'suppliers' | 'categories'>('categories');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const selectedCat = categories.find(c => c.id === selectedCategory);
+
+  // Handle category click on mobile -> go to product listing
+  const handleSubcategoryClick = (catName: string) => {
+    router.push(`/search?category=${catName.toLowerCase()}`);
+  };
+
   return (
-    <div className={styles.section}>
-      <div className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>{title}</h2>
-        <button className={styles.viewMoreLink} onClick={() => router.push(`/search?section=${sectionId}`)}>View more</button>
-      </div>
-
-      {/* Mobile: horizontal scroll */}
+    <div className={styles.shell}>
+      {/* ── Mobile ── */}
       <div className={styles.mobileOnly}>
-        <div className={styles.productScrollRow}>
-          {products.map(p => <ProductCard key={p.id} product={p} />)}
-        </div>
-        <button className={styles.viewMoreBtn} onClick={() => router.push(`/search?section=${sectionId}`)}>View more</button>
+        <StatusBar />
+
+        {!showListing ? (
+          /* ── Category Browse Mode ── */
+          <>
+            <div className={styles.mobileHeader}>
+              <button className={styles.backBtn} onClick={() => router.push('/')}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+              <div className={styles.mobileSearchWrap}>
+                <input type="text" placeholder="Search RED101" className={styles.mobileSearchInput} readOnly />
+                <button className={styles.mobileSearchBtn}>
+                  <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M7.43 0C11.5 0 14.81 3.27 14.87 7.34C14.87 7.37 14.88 7.41 14.88 7.44C14.88 11.55 11.55 14.88 7.44 14.88C3.34 14.88 0 11.55 0 7.44C0 3.34 3.33 0 7.43 0ZM1.3 7.44C1.3 10.83 4.05 13.58 7.44 13.58C10.81 13.58 13.54 10.86 13.57 7.5C13.57 7.48 13.57 7.46 13.57 7.44C13.57 4.05 10.82 1.3 7.43 1.3C4.05 1.3 1.3 4.05 1.3 7.44Z" fill="white"/><path d="M11.78 11.78C12 11.55 12.34 11.53 12.59 11.69L12.69 11.78L17.81 16.89L17.89 16.99C18.06 17.25 18.03 17.59 17.81 17.81C17.59 18.03 17.25 18.06 16.99 17.89L16.89 17.81L11.78 12.69L11.69 12.59C11.53 12.34 11.55 12 11.78 11.78Z" fill="white"/></svg>
+                </button>
+              </div>
+              <button className={styles.mobileMenuBtn}>
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6H19M3 11H19M3 16H19" stroke="#1f1f1f" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              </button>
+            </div>
+
+            <div className={styles.scrollArea}>
+              <h1 className={styles.exploreTitle}>Explore and browse</h1>
+              <div className={styles.tabBar}>
+                <button className={`${styles.tab} ${activeTab === 'suppliers' ? styles.tabActive : ''}`} onClick={() => setActiveTab('suppliers')}>All Suppliers</button>
+                <button className={`${styles.tab} ${activeTab === 'categories' ? styles.tabActive : ''}`} onClick={() => setActiveTab('categories')}>All Categories</button>
+              </div>
+
+              {activeTab === 'categories' && !selectedCategory && (
+                <div className={styles.categoryList}>
+                  {categories.map(cat => (
+                    <button key={cat.id} className={styles.categoryRow} onClick={() => setSelectedCategory(cat.id)}>
+                      <span className={styles.categoryName}>{cat.name}</span>
+                      <span className={styles.categoryChevron}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="#9a9a9a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {activeTab === 'categories' && selectedCategory && selectedCat && (
+                <>
+                  <button className={styles.subCategoryBack} onClick={() => setSelectedCategory(null)}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <span className={styles.subCategoryBackName}>{selectedCat.name}</span>
+                  </button>
+                  <div className={styles.categoryList}>
+                    {selectedCat.subcategories.map(sub => (
+                      <button key={sub.id} className={styles.categoryRow} onClick={() => handleSubcategoryClick(selectedCat.name)}>
+                        <span className={styles.categoryName}>{sub.name}</span>
+                        <span className={styles.categoryChevron}>
+                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="#9a9a9a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {activeTab === 'suppliers' && (
+                <div className={styles.categoryList}>
+                  <button className={styles.categoryRow}><span className={styles.categoryName}>View all Suppliers</span><span className={styles.categoryChevron}><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="#9a9a9a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></span></button>
+                  <button className={styles.categoryRow}><span className={styles.categoryName}>LLP superstore</span><span className={styles.categoryChevron}><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="#9a9a9a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></span></button>
+                  <button className={styles.categoryRow}><span className={styles.categoryName}>GreatValue</span><span className={styles.categoryChevron}><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="#9a9a9a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></span></button>
+                </div>
+              )}
+            </div>
+          </>
+        ) : (
+          /* ── Product Listing Mode (mobile) ── */
+          <>
+            <div className={styles.mobileHeader}>
+              <button className={styles.backBtn} onClick={() => router.push('/search')}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </button>
+              <div className={styles.mobileSearchWrap}>
+                <input type="text" placeholder="Search RED101" className={styles.mobileSearchInput} readOnly />
+                <button className={styles.mobileSearchBtn}>
+                  <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M7.43 0C11.5 0 14.81 3.27 14.87 7.34C14.87 7.37 14.88 7.41 14.88 7.44C14.88 11.55 11.55 14.88 7.44 14.88C3.34 14.88 0 11.55 0 7.44C0 3.34 3.33 0 7.43 0ZM1.3 7.44C1.3 10.83 4.05 13.58 7.44 13.58C10.81 13.58 13.54 10.86 13.57 7.5C13.57 7.48 13.57 7.46 13.57 7.44C13.57 4.05 10.82 1.3 7.43 1.3C4.05 1.3 1.3 4.05 1.3 7.44Z" fill="white"/><path d="M11.78 11.78C12 11.55 12.34 11.53 12.59 11.69L12.69 11.78L17.81 16.89L17.89 16.99C18.06 17.25 18.03 17.59 17.81 17.81C17.59 18.03 17.25 18.06 16.99 17.89L16.89 17.81L11.78 12.69L11.69 12.59C11.53 12.34 11.55 12 11.78 11.78Z" fill="white"/></svg>
+                </button>
+              </div>
+              <button className={styles.mobileMenuBtn}>
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6H19M3 11H19M3 16H19" stroke="#1f1f1f" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              </button>
+            </div>
+
+            <div className={styles.scrollArea}>
+              <h1 className={styles.listingTitle}>{listingTitle}</h1>
+
+              {categoryParam && (
+                <div className={styles.subcatPillRow}>
+                  {beverageSubcategories.map(sub => (
+                    <button key={sub.id} className={styles.subcatPill}>
+                      <div className={styles.subcatPillCircle} />
+                      <span className={styles.subcatPillLabel}>{sub.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              <div className={styles.filterBar}>
+                <button className={styles.filterBtn}>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4H14M4 8H12M6 12H10" stroke="#1f1f1f" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                  Filter
+                </button>
+                <button className={styles.gridToggle}>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 3H8V8H3V3ZM12 3H17V8H12V3ZM3 12H8V17H3V12ZM12 12H17V17H12V12Z" stroke="#1f1f1f" strokeWidth="1.2"/></svg>
+                </button>
+              </div>
+
+              <div className={styles.resultsCount}>{categoryProducts.length * 12} results</div>
+
+              <div className={styles.productGrid}>
+                {categoryProducts.map(p => (
+                  <ProductCard key={p.id} product={p} />
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        <BottomNav />
       </div>
 
-      {/* Desktop: horizontal scroll with arrows */}
+      {/* ── Desktop ── */}
       <div className={styles.desktopOnly}>
-        <div className={styles.productScrollContainer}>
-          <div className={styles.productScrollRow}>
-            {products.map(p => <ProductCard key={p.id} product={p} />)}
-          </div>
-          <button className={styles.scrollArrow + ' ' + styles.scrollArrowRight}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </button>
+        <DesktopHeader />
+
+        {/* Breadcrumb */}
+        <div className={styles.breadcrumb}>
+          <button className={styles.breadcrumbLink} onClick={() => router.push('/')}>Home</button>
+          <span>&gt;</span>
+          <span className={styles.breadcrumbCurrent}>{listingTitle}</span>
         </div>
+
+        {/* Page Title */}
+        <h1 className={styles.desktopPageTitle}>{listingTitle}</h1>
+
+        {/* Subcategory circles */}
+        {(categoryParam || !sectionParam) && (
+          <div className={styles.desktopSubcatRow}>
+            {beverageSubcategories.map(sub => (
+              <button key={sub.id} className={styles.desktopSubcatItem}>
+                <div className={styles.desktopSubcatCircle} />
+                <span className={styles.desktopSubcatLabel}>{sub.name}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Content: Filter sidebar + Product grid */}
+        <div className={styles.desktopContentWrap}>
+          <div className={styles.filterSidebar}>
+            <div className={styles.filterSidebarTitle}>Filter</div>
+            <button className={styles.filterAccordion}>
+              <span className={styles.filterAccordionLabel}>Brands</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="#1f1f1f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          </div>
+          <div className={styles.productsArea}>
+            <div className={styles.productsHeader}>
+              <span className={styles.desktopResultsCount}>150 RESULTS</span>
+              <div className={styles.sortRow}>
+                <button className={styles.sortBtn}>
+                  Sort by
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="#1f1f1f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </button>
+                <button className={styles.desktopGridToggle}>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 3H8V8H3V3ZM12 3H17V8H12V3ZM3 12H8V17H3V12ZM12 12H17V17H12V12Z" stroke="#1f1f1f" strokeWidth="1.2"/></svg>
+                </button>
+              </div>
+            </div>
+            <div className={styles.productGrid}>
+              {categoryProducts.map(p => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <DesktopFooter />
       </div>
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
-   Main Homepage Component
-   ═══════════════════════════════════════════════════════════ */
-
-export default function HomePage() {
-  const router = useRouter();
-
+export default function SearchPage() {
   return (
-    <div className={styles.shell}>
-      {/* ── Mobile Header ── */}
-      <div className={styles.mobileOnly}>
-        <StatusBar />
-        <div className={styles.mobileHeader}>
-          <img src="/images/red101-logo.svg" alt="Red101" className={styles.mobileLogo} />
-          <div className={styles.mobileSearchWrap}>
-            <input type="text" placeholder="Search Red101" className={styles.mobileSearchInput} readOnly />
-            <button className={styles.mobileSearchBtn}>
-              <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M7.43 0C11.5 0 14.81 3.27 14.87 7.34C14.87 7.37 14.88 7.41 14.88 7.44C14.88 11.55 11.55 14.88 7.44 14.88C3.34 14.88 0 11.55 0 7.44C0 3.34 3.33 0 7.43 0ZM1.3 7.44C1.3 10.83 4.05 13.58 7.44 13.58C10.81 13.58 13.54 10.86 13.57 7.5C13.57 7.48 13.57 7.46 13.57 7.44C13.57 4.05 10.82 1.3 7.43 1.3C4.05 1.3 1.3 4.05 1.3 7.44Z" fill="white"/><path d="M11.78 11.78C12 11.55 12.34 11.53 12.59 11.69L12.69 11.78L17.81 16.89L17.89 16.99C18.06 17.25 18.03 17.59 17.81 17.81C17.59 18.03 17.25 18.06 16.99 17.89L16.89 17.81L11.78 12.69L11.69 12.59C11.53 12.34 11.55 12 11.78 11.78Z" fill="white"/></svg>
-            </button>
-          </div>
-          <button className={styles.mobileProfileBtn}>
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="white" strokeWidth="1.5"/><path d="M3 18C3 14 6 12 10 12C14 12 17 14 17 18" stroke="white" strokeWidth="1.5" strokeLinecap="round"/></svg>
-          </button>
-          <button className={styles.mobileMenuBtn}>
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6H19M3 11H19M3 16H19" stroke="#1f1f1f" strokeWidth="1.5" strokeLinecap="round"/></svg>
-          </button>
-        </div>
-        <div className={styles.locationPill}>
-          <svg width="12" height="16" viewBox="0 0 14 19.47" fill="none"><path fillRule="evenodd" clipRule="evenodd" d="M0 7C0 3.13 3.13 0 7 0C10.87 0 14 3.13 14 7C14 11.17 9.58 16.92 7.77 19.11C7.37 19.59 6.64 19.59 6.24 19.11C4.42 16.92 0 11.17 0 7ZM4.5 7C4.5 8.38 5.62 9.5 7 9.5C8.38 9.5 9.5 8.38 9.5 7C9.5 5.62 8.38 4.5 7 4.5C5.62 4.5 4.5 5.62 4.5 7Z" fill="#051c40"/></svg>
-          X5000, C&oacute;rdoba ARG
-          <svg width="10" height="6" viewBox="0 0 10.5 5.833" fill="none"><path d="M0.75 0.75L5.25 5.083L9.75 0.75" stroke="#1f1f1f" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        </div>
-      </div>
-
-      {/* ── Desktop Header ── */}
-      <div className={styles.desktopOnly}>
-        <DesktopHeader />
-      </div>
-
-      {/* ── Main Content ── */}
-      <div className={styles.scrollArea}>
-        {/* Promotions */}
-        <ProductSection title="PROMOTIONS" products={promotions} sectionId="promotions" />
-
-        {/* Most Sold */}
-        <ProductSection title="MOST SOLD" products={mostSold} sectionId="most-sold" />
-
-        {/* Banner */}
-        <div className={styles.bannerSection}>
-          <div className={styles.bannerWrap}>
-            <div className={styles.bannerPlaceholder}>
-              HELLMANN&apos;S<br />
-              M&Aacute;S SUAVE. M&Aacute;S CREMOSA.<br />
-              <span style={{ fontSize: '60%', fontWeight: 600 }}>PRU&Eacute;BALA AQU&Iacute;.</span>
-            </div>
-            <button className={`${styles.bannerArrow} ${styles.bannerArrowLeft}`}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </button>
-            <button className={`${styles.bannerArrow} ${styles.bannerArrowRight}`}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </button>
-          </div>
-          <div className={styles.bannerDots}>
-            <button className={`${styles.bannerDot} ${styles.bannerDotActive}`} />
-            <button className={styles.bannerDot} />
-            <button className={styles.bannerDot} />
-            <button className={styles.bannerDot} />
-          </div>
-        </div>
-
-        {/* New Arrivals / Latest Products */}
-        <ProductSection title="NEW ARRIVALS" products={newArrivals} sectionId="new-arrivals" />
-      </div>
-
-      {/* ── Mobile Bottom Nav ── */}
-      <div className={styles.mobileOnly}>
-        <BottomNav />
-      </div>
-
-      {/* ── Desktop Footer ── */}
-      <div className={styles.desktopOnly}>
-        <DesktopFooter />
-      </div>
-    </div>
+    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#fff' }} />}>
+      <SearchPageContent />
+    </Suspense>
   );
 }
