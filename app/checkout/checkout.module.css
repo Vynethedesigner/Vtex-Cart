@@ -701,6 +701,282 @@
   font-weight: 600;
 }
 
+/* ── Pick-up Option Row ── */
+.pickupOptionRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.pickupOptionRow:hover {
+  border-color: #051c40;
+}
+
+.pickupOptionRowSelected {
+  border-color: #051c40;
+}
+
+.pickupOptionLabel {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1f1f1f;
+}
+
+.pickupOptionPrice {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f1f1f;
+  white-space: nowrap;
+}
+
+.pickupPointLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: #34C5F5;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 16px;
+  display: block;
+  text-align: center;
+}
+
+/* ── Supplier Fulfilment ── */
+.supplierFulfilment {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.supplierFulfilment:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.supplierFulfilmentHeader {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin-bottom: 16px;
+}
+
+/* ── Delivery Notes ── */
+.deliveryNotesWrap {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.deliveryNotesInput {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Figtree', sans-serif;
+  color: #1f1f1f;
+  resize: vertical;
+  min-height: 60px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.deliveryNotesInput::placeholder {
+  color: #9a9a9a;
+}
+
+.deliveryNotesInput:focus {
+  border-color: #051c40;
+}
+
+/* ── Sidebar Item Thumbnail ── */
+.sidebarItemThumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: #f8f8f8;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.summaryItemRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.summaryItemInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.summaryItemName {
+  font-size: 13px;
+  color: #1f1f1f;
+  line-height: 17px;
+}
+
+.summaryItemDesc {
+  font-size: 12px;
+  color: #626262;
+}
+
+.summaryItemQty {
+  font-size: 12px;
+  color: #626262;
+  font-weight: 600;
+}
+
+.summaryItemPrice {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f1f1f;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Schedule Date Label ── */
+.scheduleDateLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #34C5F5;
+  margin-bottom: 8px;
+  text-decoration: underline;
+}
+
+/* ── Time Picker with settings icon ── */
+.timeCardWithIcon {
+  padding: 12px 14px;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #1f1f1f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timeCardIcon {
+  color: #9a9a9a;
+  flex-shrink: 0;
+}
+
+/* ── Modal ── */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 16px 16px 0 0;
+  width: 100%;
+  max-width: 390px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  animation: scaleIn 0.2s ease;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.modalClose {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #626262;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+
+.modalClose:hover {
+  background: #f5f5f5;
+}
+
+.modalSectionLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: #506079;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+.modalSectionLabel:first-child {
+  margin-top: 0;
+}
+
+.modalAddressCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.modalAddressCard:hover {
+  border-color: #051c40;
+  background: #f8f9fc;
+}
+
+.modalAddressCardSelected {
+  border-color: #051c40;
+  background: #f8f9fc;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE HELPERS
+   ═══════════════════════════════════════════════════════ */
+
+.mobileOnly {
+  display: block;
+}
+
+.desktopOnly {
+  display: none;
+}
+
 /* ── Animations ── */
 @keyframes slideDown {
   from { opacity: 0; transform: translate(-50%, -100%); }
@@ -721,4 +997,643 @@
   0% { transform: scale(0); }
   50% { transform: scale(1.2); }
   100% { transform: scale(1); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   DESKTOP STYLES (>= 1024px)
+   ═══════════════════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+  .mobileOnly {
+    display: none !important;
+  }
+
+  .desktopOnly {
+    display: block !important;
+  }
+
+  /* ── Shell override for desktop ── */
+  .shell {
+    max-width: 100%;
+    box-shadow: none;
+    background: #ffffff;
+  }
+
+  .scrollArea {
+    padding-bottom: 0;
+    overflow: visible;
+  }
+
+  /* ── Desktop Header (full — for Thank You / Help pages) ── */
+  .desktopHeaderWrap {
+    background: #ffffff;
+    width: 100%;
+    border-bottom: 1px solid #f3f3f3;
+  }
+
+  .desktopHeader {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 12px 80px;
+    gap: 24px;
+  }
+
+  .desktopHeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .desktopLogo {
+    height: 28px;
+    width: auto;
+  }
+
+  .desktopLocation {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .desktopLocationText {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .desktopLocationLine1 {
+    font-size: 12px;
+    font-weight: 400;
+    color: #1f1f1f;
+    line-height: 14px;
+  }
+
+  .desktopLocationLine2 {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f1f1f;
+    line-height: 17px;
+  }
+
+  .desktopSearchWrap {
+    flex: 1;
+    max-width: 613px;
+    display: flex;
+    align-items: center;
+    background: #f3f3f3;
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .desktopSearchInput {
+    flex: 1;
+    padding: 13px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f1f1f;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Figtree', sans-serif;
+  }
+
+  .desktopSearchInput::placeholder {
+    color: #626262;
+  }
+
+  .desktopSearchBtn {
+    width: 32px;
+    height: 32px;
+    background: #236e85;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 9999px;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
+  .desktopHeaderRight {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .desktopHeaderAction {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #8f8f8f;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    white-space: nowrap;
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    line-height: 1.2;
+  }
+
+  .desktopHeaderAction:hover {
+    color: #1f1f1f;
+  }
+
+  .desktopHeaderAction span {
+    text-align: left;
+  }
+
+  .desktopHeaderIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* ── Category Nav ── */
+  .desktopCategoryNav {
+    background: white;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .desktopCategoryInner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 80px;
+  }
+
+  .desktopCategoryItem {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1f1f1f;
+    cursor: pointer;
+    white-space: nowrap;
+    background: none;
+    border: none;
+    transition: color 0.15s;
+  }
+
+  .desktopCategoryItem:hover {
+    color: #051c40;
+    font-weight: 500;
+  }
+
+  .desktopCategorySep {
+    width: 1px;
+    height: 20px;
+    background: #e8e8e8;
+    flex-shrink: 0;
+  }
+
+  /* ── Simplified Checkout Header (for checkout form screens) ── */
+  .checkoutHeaderWrap {
+    background: #ffffff;
+    width: 100%;
+    border-bottom: 1px solid #f3f3f3;
+  }
+
+  .checkoutHeader {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 80px;
+  }
+
+  .checkoutHeaderHelp {
+    font-size: 14px;
+    font-weight: 500;
+    color: #051c40;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .checkoutHeaderHelp:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Page Header (Back + Title stacked) ── */
+  .desktopPageHeader {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 16px 80px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .desktopBackToCart {
+    font-size: 14px;
+    font-weight: 400;
+    color: #626262;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  .desktopBackToCart:hover {
+    color: #1f1f1f;
+  }
+
+  /* ── Page Title ── */
+  .desktopPageTitle {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1f1f1f;
+    line-height: 36px;
+    margin: 0;
+  }
+
+  /* ── Breadcrumb ── */
+  .desktopBreadcrumb {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 16px 80px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #626262;
+  }
+
+  .breadcrumbLink {
+    color: #34C5F5;
+    cursor: pointer;
+  }
+
+  .breadcrumbLink:hover {
+    text-decoration: underline;
+  }
+
+  .breadcrumbSep {
+    color: #9a9a9a;
+  }
+
+  .breadcrumbCurrent {
+    color: #1f1f1f;
+    font-weight: 500;
+  }
+
+  /* ── Two Column Layout ── */
+  .desktopTwoCol {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 80px 40px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .desktopMainCol {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .desktopSidebarCol {
+    width: 340px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+  }
+
+  /* ── Desktop Sections as cards ── */
+  .desktopCard {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .section {
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  /* ── Tabs desktop ── */
+  .tabs {
+    gap: 12px;
+    max-width: 340px;
+  }
+
+  .tab {
+    padding: 12px 0;
+    font-size: 15px;
+  }
+
+  /* ── Desktop Sidebar (Order Summary) ── */
+  .desktopSidebar {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .sidebarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .sidebarTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f1f1f;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .sidebarDetailsLink {
+    font-size: 14px;
+    font-weight: 500;
+    color: #34C5F5;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .sidebarDetailsLink:hover {
+    text-decoration: underline;
+  }
+
+  .sidebarRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .sidebarLabel {
+    font-size: 14px;
+    font-weight: 400;
+    color: #626262;
+  }
+
+  .sidebarValue {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f1f1f;
+  }
+
+  .sidebarDiscount {
+    color: #0d7c3d;
+  }
+
+  .sidebarFree {
+    color: #0d7c3d;
+    font-weight: 600;
+  }
+
+  .sidebarTotalRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid #e8e8e8;
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+
+  .sidebarTotalLabel {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f1f1f;
+  }
+
+  .sidebarTotalSubLabel {
+    font-size: 12px;
+    font-weight: 400;
+    color: #626262;
+  }
+
+  .sidebarTotalValue {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1f1f1f;
+  }
+
+  .sidebarPlaceOrderBtn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    margin-top: 16px;
+    background: #051c40;
+    color: white;
+  }
+
+  .sidebarPlaceOrderBtn:hover {
+    background: #07254f;
+  }
+
+  .sidebarPlaceOrderBtn:disabled {
+    background: #e8e8e8;
+    color: #9a9a9a;
+    cursor: not-allowed;
+  }
+
+  /* ── Desktop Footer ── */
+  .desktopFooter {
+    background: #051c40;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .desktopFooterInner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 48px 80px 32px;
+    display: flex;
+    gap: 80px;
+  }
+
+  .desktopFooterLeft {
+    flex: 1;
+  }
+
+  .desktopFooterLogo {
+    height: 40px;
+    width: auto;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1);
+  }
+
+  .desktopFooterEmail {
+    display: block;
+    color: #34C5F5;
+    font-size: 14px;
+    margin-bottom: 8px;
+    text-decoration: none;
+  }
+
+  .desktopFooterEmail:hover {
+    text-decoration: underline;
+  }
+
+  .desktopFooterHours {
+    color: #8a96a7;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .desktopFooterCol {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .desktopFooterColTitle {
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .desktopFooterLink {
+    color: #8a96a7;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .desktopFooterLink:hover {
+    color: white;
+  }
+
+  .desktopFooterBottom {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .desktopFooterSocials {
+    display: flex;
+    gap: 12px;
+  }
+
+  .desktopFooterSocials svg {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+  }
+
+  .desktopFooterSocials svg:hover {
+    opacity: 1;
+  }
+
+  .desktopFooterCopyright {
+    color: #8a96a7;
+    font-size: 13px;
+  }
+
+  .desktopFooterLegal {
+    display: flex;
+    gap: 16px;
+  }
+
+  .desktopFooterLegal a {
+    color: #34C5F5;
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  .desktopFooterLegal a:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Toast on desktop ── */
+  .toast {
+    max-width: 100%;
+    border-radius: 0;
+    top: 0;
+    transform: none;
+    left: 0;
+    position: relative;
+  }
+
+  /* ── Modal on desktop ── */
+  .modalOverlay {
+    align-items: center;
+  }
+
+  .modalContent {
+    max-width: 560px;
+    border-radius: 16px;
+    max-height: 70vh;
+  }
+
+  /* ── Schedule thumbnails on desktop ── */
+  .scheduleThumb {
+    width: 48px;
+    height: 48px;
+  }
+
+  .scheduleThumbMore {
+    width: 48px;
+    height: 48px;
+    font-size: 13px;
+  }
+
+  /* ── Thank You desktop ── */
+  .thankYou {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .thankYouMessage {
+    max-width: 400px;
+  }
+
+  .supportSection {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .supportValue {
+    color: #34C5F5;
+  }
+
+  .supportValueLink {
+    color: #34C5F5;
+    text-decoration: none;
+  }
+
+  .supportValueLink:hover {
+    text-decoration: underline;
+  }
 }
