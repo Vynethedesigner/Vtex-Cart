@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#f5f5f5" rx="8"/>
+  <rect x="55" y="40" width="90" height="130" rx="4" fill="#E67E22"/>
+  <rect x="55" y="40" width="12" height="130" rx="2" fill="#CF6C0E"/>
+  <rect x="72" y="95" width="65" height="45" rx="3" fill="#F5DEB3"/>
+  <line x1="78" y1="98" x2="78" y2="137" stroke="#E8C97A" stroke-width="2.5"/>
+  <line x1="85" y1="98" x2="85" y2="137" stroke="#E8C97A" stroke-width="2.5"/>
+  <line x1="92" y1="98" x2="92" y2="137" stroke="#E8C97A" stroke-width="2.5"/>
+  <line x1="99" y1="98" x2="99" y2="137" stroke="#E8C97A" stroke-width="2.5"/>
+  <line x1="106" y1="98" x2="106" y2="137" stroke="#E8C97A" stroke-width="2.5"/>
+  <line x1="113" y1="98" x2="113" y2="137" stroke="#E8C97A" stroke-width="2.5"/>
+  <line x1="120" y1="98" x2="120" y2="137" stroke="#E8C97A" stroke-width="2.5"/>
+  <line x1="127" y1="98" x2="127" y2="137" stroke="#E8C97A" stroke-width="2.5"/>
+  <text x="100" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="20" fill="white">PASTA</text>
+  <text x="100" y="87" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FDE3A7">SPAGHETTI</text>
+  <text x="100" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">500g</text>
+</svg>

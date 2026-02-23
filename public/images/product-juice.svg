@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#f5f5f5" rx="8"/>
+  <rect x="58" y="50" width="84" height="120" rx="4" fill="#F39C12"/>
+  <path d="M58 50 L100 32 L142 50 Z" fill="#E67E22"/>
+  <path d="M63 50 L100 35 L137 50 Z" fill="#F5B041"/>
+  <rect x="66" y="68" width="68" height="50" rx="3" fill="white" opacity="0.9"/>
+  <circle cx="100" cy="85" r="12" fill="#F39C12"/>
+  <circle cx="100" cy="85" r="10" fill="#E67E22"/>
+  <line x1="100" y1="76" x2="100" y2="94" stroke="#F5B041" stroke-width="1"/>
+  <line x1="91" y1="85" x2="109" y2="85" stroke="#F5B041" stroke-width="1"/>
+  <ellipse cx="104" cy="75" rx="4" ry="2" fill="#27AE60" transform="rotate(-30 104 75)"/>
+  <text x="100" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#E67E22">JUICE</text>
+  <text x="100" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="white">ORANGE</text>
+  <text x="100" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#FDE3A7">1 LITRE</text>
+</svg>
