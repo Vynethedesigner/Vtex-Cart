@@ -211,14 +211,16 @@ function ProductCard({ product }: { product: HomeProduct }) {
           </div>
         )}
       </div>
-      <div className={styles.productSupplier}>{product.supplier}</div>
-      <div className={styles.productName}>{product.name}, {product.description}</div>
-      {product.options && <div className={styles.productOptions}>{product.options}</div>}
-      <div className={styles.productPriceRow}>
-        <span className={styles.productPrice}>${product.price.toFixed(2)}</span>
-        {product.originalPrice && <span className={styles.productOriginalPrice}>${product.originalPrice.toFixed(2)}</span>}
+      <div className={styles.productInfo}>
+        <div className={styles.productSupplier}>{product.supplier}</div>
+        <div className={styles.productName}>{product.name}, {product.description}</div>
+        {product.options && <div className={styles.productOptions}>{product.options}</div>}
+        <div className={styles.productPriceRow}>
+          <span className={styles.productPriceTag}><span className={styles.productPrice}>${product.price.toFixed(2)}</span></span>
+          {product.originalPrice && <span className={styles.productOriginalPrice}>${product.originalPrice.toFixed(2)}</span>}
+        </div>
+        <div className={styles.productUnit}>{product.unitPrice}</div>
       </div>
-      <div className={styles.productUnit}>{product.unitPrice}</div>
       {product.pricingOptions && (
         <button className={styles.productPricingLink}>Pricing options({product.pricingOptions})</button>
       )}
