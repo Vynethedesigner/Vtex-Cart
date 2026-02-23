@@ -1201,8 +1201,8 @@
 
   /* ── Alert Banner (Desktop) ── */
   .desktopAlertBanner {
-    max-width: 1440px;
-    margin: 0 auto 16px;
+    width: 100%;
+    margin: 0 0 16px;
     padding: 12px 80px;
     background: #e8f0fe;
     font-size: 14px;
