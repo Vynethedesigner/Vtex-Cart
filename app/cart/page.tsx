@@ -139,28 +139,30 @@ function DesktopHeader() {
         <div className={styles.desktopHeaderLeft}>
           <img src="/images/red101-logo.svg" alt="Red101" className={styles.desktopLogo} />
           <div className={styles.desktopLocation}>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.24 1 2 3.24 2 6C2 9.5 7 13 7 13C7 13 12 9.5 12 6C12 3.24 9.76 1 7 1Z" fill="#34C5F5"/><circle cx="7" cy="6" r="2" fill="white"/></svg>
-            <span>X5000, Cordo... Argentina</span>
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4L5 7L8 4" stroke="white" strokeWidth="1.2" strokeLinecap="round"/></svg>
+            <svg width="16" height="20" viewBox="0 0 14 19.47" fill="none"><path fillRule="evenodd" clipRule="evenodd" d="M0 7C0 3.13 3.13 0 7 0C10.87 0 14 3.13 14 7C14 11.17 9.58 16.92 7.77 19.11C7.37 19.59 6.64 19.59 6.24 19.11C4.42 16.92 0 11.17 0 7ZM4.5 7C4.5 8.38 5.62 9.5 7 9.5C8.38 9.5 9.5 8.38 9.5 7C9.5 5.62 8.38 4.5 7 4.5C5.62 4.5 4.5 5.62 4.5 7Z" fill="#8f8f8f"/></svg>
+            <div className={styles.desktopLocationText}>
+              <span className={styles.desktopLocationLine1}>X5000, C&oacute;rdoba</span>
+              <span className={styles.desktopLocationLine2}>Argentina <svg width="10" height="6" viewBox="0 0 10.5 5.833" fill="none"><path d="M0.75 0.75L5.25 5.083L9.75 0.75" stroke="#1f1f1f" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+            </div>
           </div>
         </div>
         <div className={styles.desktopSearchWrap}>
           <input type="text" placeholder="Search RED101" className={styles.desktopSearchInput} readOnly />
           <button className={styles.desktopSearchBtn}>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="6" stroke="white" strokeWidth="2"/><path d="M13 13L16 16" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7.43 0C11.5 0 14.81 3.27 14.87 7.34C14.87 7.37 14.88 7.41 14.88 7.44C14.88 11.55 11.55 14.88 7.44 14.88C3.34 14.88 0 11.55 0 7.44C0 3.34 3.33 0 7.43 0ZM1.3 7.44C1.3 10.83 4.05 13.58 7.44 13.58C10.81 13.58 13.54 10.86 13.57 7.5C13.57 7.48 13.57 7.46 13.57 7.44C13.57 4.05 10.82 1.3 7.43 1.3C4.05 1.3 1.3 4.05 1.3 7.44Z" fill="white"/><path d="M11.78 11.78C12 11.55 12.34 11.53 12.59 11.69L12.69 11.78L17.81 16.89L17.89 16.99C18.06 17.25 18.03 17.59 17.81 17.81C17.59 18.03 17.25 18.06 16.99 17.89L16.89 17.81L11.78 12.69L11.69 12.59C11.53 12.34 11.55 12 11.78 11.78Z" fill="white"/></svg>
           </button>
         </div>
         <div className={styles.desktopHeaderRight}>
           <button className={styles.desktopHeaderAction}>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7C4 7 4 9 2 12H16C14 9 14 7 14 7C14 4.24 11.76 2 9 2Z" stroke="white" strokeWidth="1.3"/><circle cx="9" cy="16" r="1.5" fill="white"/></svg>
+            <img src="/images/header-user-icon.svg" alt="" className={styles.desktopHeaderIcon} />
             <span>Sign in/<br/>Register</span>
           </button>
           <button className={styles.desktopHeaderAction}>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="white" strokeWidth="1.3"/><path d="M2 7H16" stroke="white" strokeWidth="1.3"/><circle cx="13" cy="11" r="1" fill="white"/></svg>
+            <img src="/images/header-nav-icon.svg" alt="" className={styles.desktopHeaderIcon} />
             <span>RedPay</span>
           </button>
           <button className={styles.desktopHeaderAction}>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 5H15L13.5 12H6.5L5 5Z" stroke="white" strokeWidth="1.3" strokeLinejoin="round"/><path d="M5 5L4.5 3H2" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="7.5" cy="15" r="1" fill="white"/><circle cx="12.5" cy="15" r="1" fill="white"/></svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6H16L14.5 13H7.5L6 6Z" stroke="#8f8f8f" strokeWidth="1.3" strokeLinejoin="round"/><path d="M6 6L5.5 4H3" stroke="#8f8f8f" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="8.5" cy="16" r="1.2" fill="#8f8f8f"/><circle cx="13.5" cy="16" r="1.2" fill="#8f8f8f"/></svg>
             <span>Cart</span>
           </button>
         </div>
@@ -168,8 +170,9 @@ function DesktopHeader() {
       {/* Category Nav */}
       <div className={styles.desktopCategoryNav}>
         <div className={styles.desktopCategoryInner}>
-          <button className={styles.desktopCategoryItem}>All Suppliers <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 3L4 5.5L6.5 3" stroke="#1f1f1f" strokeWidth="1" strokeLinecap="round"/></svg></button>
-          <button className={styles.desktopCategoryItem}>All Categories <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 3L4 5.5L6.5 3" stroke="#1f1f1f" strokeWidth="1" strokeLinecap="round"/></svg></button>
+          <button className={styles.desktopCategoryItem}>All Suppliers <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="#1f1f1f" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
+          <div className={styles.desktopCategorySep} />
+          <button className={styles.desktopCategoryItem}>All Categories <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="#1f1f1f" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
           <button className={styles.desktopCategoryItem}>Beverages</button>
           <button className={styles.desktopCategoryItem}>Grocery</button>
           <button className={styles.desktopCategoryItem}>Body Care</button>
