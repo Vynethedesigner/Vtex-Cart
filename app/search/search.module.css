@@ -472,10 +472,11 @@
 
   /* ── Desktop Header (same as home) ── */
   .desktopHeaderWrap {
-    background: #051c40;
+    background: #ffffff;
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid #f3f3f3;
   }
   .desktopHeader {
     max-width: 1440px;
@@ -492,87 +493,98 @@
     flex-shrink: 0;
   }
   .desktopLogo {
-    height: 32px;
+    height: 28px;
+    width: auto;
   }
   .desktopLocation {
     display: flex;
-    align-items: center;
-    gap: 6px;
+    align-items: flex-start;
+    gap: 4px;
     cursor: pointer;
+    white-space: nowrap;
   }
   .desktopLocationText {
     display: flex;
     flex-direction: column;
-    line-height: 1.2;
+    gap: 0;
   }
   .desktopLocationLine1 {
     font-size: 12px;
-    font-weight: 600;
-    color: white;
+    font-weight: 400;
+    color: #1f1f1f;
+    line-height: 14px;
   }
   .desktopLocationLine2 {
-    font-size: 11px;
-    color: #b0b8c4;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f1f1f;
+    line-height: 17px;
   }
-  .desktopLocationLine2 svg path { stroke: #b0b8c4; }
   .desktopSearchWrap {
     flex: 1;
-    max-width: 520px;
+    max-width: 613px;
     display: flex;
     align-items: center;
-    background: #ffffff;
-    border-radius: 6px;
+    background: #f3f3f3;
+    border-radius: 9999px;
     overflow: hidden;
   }
   .desktopSearchInput {
     flex: 1;
-    padding: 10px 16px;
+    padding: 13px 16px;
     font-size: 14px;
+    font-weight: 500;
     color: #1f1f1f;
     border: none;
     outline: none;
-    font-family: inherit;
+    font-family: 'Figtree', sans-serif;
     background: transparent;
   }
-  .desktopSearchInput::placeholder { color: #9a9a9a; }
+  .desktopSearchInput::placeholder { color: #626262; }
   .desktopSearchBtn {
-    width: 44px;
-    height: 40px;
-    background: #051c40;
+    width: 32px;
+    height: 32px;
+    background: #236e85;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 2px solid #0a2a5c;
+    border-radius: 9999px;
+    margin-right: 6px;
+    flex-shrink: 0;
   }
   .desktopHeaderRight {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 0;
     flex-shrink: 0;
   }
   .desktopHeaderAction {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     background: none;
     border: none;
-    color: #b0b8c4;
-    font-size: 12px;
-    font-weight: 500;
+    color: #8f8f8f;
+    font-size: 14px;
+    font-weight: 400;
     cursor: pointer;
     font-family: inherit;
     white-space: nowrap;
+    padding: 8px 12px;
+    line-height: 1.2;
   }
-  .desktopHeaderAction:hover { color: #ffffff; }
+  .desktopHeaderAction:hover { color: #1f1f1f; }
+  .desktopHeaderAction span {
+    text-align: left;
+  }
   .desktopHeaderIcon {
     width: 20px;
     height: 20px;
-    opacity: 0.7;
   }
   .desktopCategoryNav {
     background: #ffffff;
@@ -588,8 +600,8 @@
   }
   .desktopCategoryItem {
     padding: 12px 16px;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
     color: #1f1f1f;
     background: none;
     border: none;
@@ -600,10 +612,11 @@
     gap: 4px;
     white-space: nowrap;
     text-decoration: none;
+    transition: color 0.15s;
   }
   .desktopCategoryItem:hover {
     color: #051c40;
-    font-weight: 600;
+    font-weight: 500;
   }
   .desktopCategorySep {
     width: 1px;
