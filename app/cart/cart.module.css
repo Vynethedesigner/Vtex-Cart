@@ -1508,6 +1508,7 @@
     width: auto;
     margin-bottom: 16px;
     filter: brightness(0) invert(1);
+    align-self: flex-start;
   }
 
   .desktopFooterEmail {
