@@ -840,6 +840,7 @@
     height: 32px;
     margin-bottom: 16px;
     display: block;
+    filter: brightness(0) invert(1);
   }
   .desktopFooterEmail {
     color: #35A5C7;
