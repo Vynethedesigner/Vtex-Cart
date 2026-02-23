@@ -605,18 +605,21 @@
 }
 
 .couponApplyBtn {
-  padding: 12px 14px;
+  padding: 10px 16px;
   background: none;
   border: none;
   cursor: pointer;
-  color: #626262;
+  color: #34C5F5;
   display: flex;
   align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Figtree', sans-serif;
   transition: color 0.15s;
 }
 
 .couponApplyBtn:hover {
-  color: #1f1f1f;
+  color: #051c40;
 }
 
 .couponError {

@@ -473,7 +473,7 @@ export default function CartPage() {
                 onKeyDown={(e) => e.key === 'Enter' && applyCoupon()}
                 autoFocus
               />
-              <button className={styles.couponApplyBtn} onClick={applyCoupon}><EyeIcon /></button>
+              <button className={styles.couponApplyBtn} onClick={applyCoupon}>Apply</button>
             </div>
             {coupon.status === 'invalid' && (
               <div className={styles.couponError}>
