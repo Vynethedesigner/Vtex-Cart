@@ -546,14 +546,24 @@
     color: #1f1f1f;
     line-height: 17px;
   }
-  .desktopSearchWrap {
+  .desktopSearchContainer {
     flex: 1;
     max-width: 613px;
+    position: relative;
+  }
+  .desktopSearchWrap {
+    width: 100%;
     display: flex;
     align-items: center;
     background: #f3f3f3;
     border-radius: 9999px;
     overflow: hidden;
+    border: 1.5px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .desktopSearchWrapFocused {
+    background: #ffffff;
+    border-color: #b4bbc6;
   }
   .desktopSearchInput {
     flex: 1;
@@ -579,6 +589,59 @@
     border-radius: 9999px;
     margin-right: 6px;
     flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .desktopSearchBtnFocused {
+    background: transparent;
+    margin-right: 12px;
+  }
+
+  /* ── Search Dropdown ── */
+  .searchDropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 16px 20px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .searchDropdownSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .searchDropdownLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: #626262;
+    font-style: italic;
+  }
+  .searchChipRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .searchChip {
+    padding: 6px 12px;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    background: #ffffff;
+    font-size: 13px;
+    font-weight: 400;
+    color: #1f1f1f;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.1s;
+  }
+  .searchChip:hover {
+    background: #f3f3f3;
   }
   .desktopHeaderRight {
     display: flex;

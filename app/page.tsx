@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './home/home.module.css';
 import { promotions, mostSold, newArrivals, HomeProduct } from './home/data';
@@ -97,6 +97,36 @@ function BottomNav() {
 /* ── Desktop Header ── */
 function DesktopHeader() {
   const router = useRouter();
+  const [searchFocused, setSearchFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchWrapRef = useRef<HTMLDivElement>(null);
+
+  const recentSearches = ['beer pack', 'search record', 'search record', 'search record', 'search record', 'search record', 'search record', 'search record'];
+  const topSearches = ['beer pack', 'search record', 'search record', 'search record', 'search record', 'search record', 'search record', 'search record'];
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (searchWrapRef.current && !searchWrapRef.current.contains(e.target as Node)) {
+        setSearchFocused(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchFocused(false);
+    }
+  };
+
+  const handleChipClick = (term: string) => {
+    setSearchQuery(term);
+    router.push(`/search?q=${encodeURIComponent(term)}`);
+    setSearchFocused(false);
+  };
+
   return (
     <div className={styles.desktopHeaderWrap}>
       <div className={styles.desktopHeader}>
@@ -110,11 +140,41 @@ function DesktopHeader() {
             </div>
           </div>
         </div>
-        <div className={styles.desktopSearchWrap}>
-          <input type="text" placeholder="Search RED101" className={styles.desktopSearchInput} readOnly />
-          <button className={styles.desktopSearchBtn}>
-            <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M7.43 0C11.5 0 14.81 3.27 14.87 7.34C14.87 7.37 14.88 7.41 14.88 7.44C14.88 11.55 11.55 14.88 7.44 14.88C3.34 14.88 0 11.55 0 7.44C0 3.34 3.33 0 7.43 0ZM1.3 7.44C1.3 10.83 4.05 13.58 7.44 13.58C10.81 13.58 13.54 10.86 13.57 7.5C13.57 7.48 13.57 7.46 13.57 7.44C13.57 4.05 10.82 1.3 7.43 1.3C4.05 1.3 1.3 4.05 1.3 7.44Z" fill="white"/><path d="M11.78 11.78C12 11.55 12.34 11.53 12.59 11.69L12.69 11.78L17.81 16.89L17.89 16.99C18.06 17.25 18.03 17.59 17.81 17.81C17.59 18.03 17.25 18.06 16.99 17.89L16.89 17.81L11.78 12.69L11.69 12.59C11.53 12.34 11.55 12 11.78 11.78Z" fill="white"/></svg>
-          </button>
+        <div className={styles.desktopSearchContainer} ref={searchWrapRef}>
+          <div className={`${styles.desktopSearchWrap} ${searchFocused ? styles.desktopSearchWrapFocused : ''}`}>
+            <input
+              type="text"
+              placeholder="Search RED101"
+              className={styles.desktopSearchInput}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setSearchFocused(true)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+            />
+            <button className={`${styles.desktopSearchBtn} ${searchFocused ? styles.desktopSearchBtnFocused : ''}`} onClick={handleSearch}>
+              <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M7.43 0C11.5 0 14.81 3.27 14.87 7.34C14.87 7.37 14.88 7.41 14.88 7.44C14.88 11.55 11.55 14.88 7.44 14.88C3.34 14.88 0 11.55 0 7.44C0 3.34 3.33 0 7.43 0ZM1.3 7.44C1.3 10.83 4.05 13.58 7.44 13.58C10.81 13.58 13.54 10.86 13.57 7.5C13.57 7.48 13.57 7.46 13.57 7.44C13.57 4.05 10.82 1.3 7.43 1.3C4.05 1.3 1.3 4.05 1.3 7.44Z" fill={searchFocused ? '#626262' : 'white'}/><path d="M11.78 11.78C12 11.55 12.34 11.53 12.59 11.69L12.69 11.78L17.81 16.89L17.89 16.99C18.06 17.25 18.03 17.59 17.81 17.81C17.59 18.03 17.25 18.06 16.99 17.89L16.89 17.81L11.78 12.69L11.69 12.59C11.53 12.34 11.55 12 11.78 11.78Z" fill={searchFocused ? '#626262' : 'white'}/></svg>
+            </button>
+          </div>
+          {searchFocused && (
+            <div className={styles.searchDropdown}>
+              <div className={styles.searchDropdownSection}>
+                <div className={styles.searchDropdownLabel}>Recent searches</div>
+                <div className={styles.searchChipRow}>
+                  {recentSearches.map((term, i) => (
+                    <button key={`recent-${i}`} className={styles.searchChip} onClick={() => handleChipClick(term)}>{term}</button>
+                  ))}
+                </div>
+              </div>
+              <div className={styles.searchDropdownSection}>
+                <div className={styles.searchDropdownLabel}>Top searches</div>
+                <div className={styles.searchChipRow}>
+                  {topSearches.map((term, i) => (
+                    <button key={`top-${i}`} className={styles.searchChip} onClick={() => handleChipClick(term)}>{term}</button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         <div className={styles.desktopHeaderRight}>
           <button className={styles.desktopHeaderAction}>
