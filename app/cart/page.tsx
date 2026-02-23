@@ -90,6 +90,14 @@ function EyeIcon() {
   );
 }
 
+function ChevronRightIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M7 4L13 10L7 16" stroke="#506079" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════
    Reusable Sub-Components
    ═══════════════════════════════════════════════════════════ */
@@ -119,6 +127,98 @@ function BottomNav({ totalItems }: { totalItems: number }) {
         {totalItems > 0 && <span className={styles.navBadge}>{totalItems}</span>}
         <div className={styles.navActiveIndicator} />
       </button>
+    </div>
+  );
+}
+
+/* ── Desktop Header ── */
+function DesktopHeader() {
+  return (
+    <div className={styles.desktopHeaderWrap}>
+      <div className={styles.desktopHeader}>
+        <div className={styles.desktopHeaderLeft}>
+          <img src="/images/red101-logo.svg" alt="Red101" className={styles.desktopLogo} />
+          <div className={styles.desktopLocation}>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.24 1 2 3.24 2 6C2 9.5 7 13 7 13C7 13 12 9.5 12 6C12 3.24 9.76 1 7 1Z" fill="#34C5F5"/><circle cx="7" cy="6" r="2" fill="white"/></svg>
+            <span>X5000, Cordo... Argentina</span>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 4L5 7L8 4" stroke="white" strokeWidth="1.2" strokeLinecap="round"/></svg>
+          </div>
+        </div>
+        <div className={styles.desktopSearchWrap}>
+          <input type="text" placeholder="Search RED101" className={styles.desktopSearchInput} readOnly />
+          <button className={styles.desktopSearchBtn}>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="6" stroke="white" strokeWidth="2"/><path d="M13 13L16 16" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>
+          </button>
+        </div>
+        <div className={styles.desktopHeaderRight}>
+          <button className={styles.desktopHeaderAction}>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7C4 7 4 9 2 12H16C14 9 14 7 14 7C14 4.24 11.76 2 9 2Z" stroke="white" strokeWidth="1.3"/><circle cx="9" cy="16" r="1.5" fill="white"/></svg>
+            <span>Sign in/<br/>Register</span>
+          </button>
+          <button className={styles.desktopHeaderAction}>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="white" strokeWidth="1.3"/><path d="M2 7H16" stroke="white" strokeWidth="1.3"/><circle cx="13" cy="11" r="1" fill="white"/></svg>
+            <span>RedPay</span>
+          </button>
+          <button className={styles.desktopHeaderAction}>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 5H15L13.5 12H6.5L5 5Z" stroke="white" strokeWidth="1.3" strokeLinejoin="round"/><path d="M5 5L4.5 3H2" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/><circle cx="7.5" cy="15" r="1" fill="white"/><circle cx="12.5" cy="15" r="1" fill="white"/></svg>
+            <span>Cart</span>
+          </button>
+        </div>
+      </div>
+      {/* Category Nav */}
+      <div className={styles.desktopCategoryNav}>
+        <div className={styles.desktopCategoryInner}>
+          <button className={styles.desktopCategoryItem}>All Suppliers <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 3L4 5.5L6.5 3" stroke="#1f1f1f" strokeWidth="1" strokeLinecap="round"/></svg></button>
+          <button className={styles.desktopCategoryItem}>All Categories <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 3L4 5.5L6.5 3" stroke="#1f1f1f" strokeWidth="1" strokeLinecap="round"/></svg></button>
+          <button className={styles.desktopCategoryItem}>Beverages</button>
+          <button className={styles.desktopCategoryItem}>Grocery</button>
+          <button className={styles.desktopCategoryItem}>Body Care</button>
+          <button className={styles.desktopCategoryItem}>Cleaning Supplies</button>
+          <button className={styles.desktopCategoryItem}>Meat and Seafood</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Desktop Footer ── */
+function DesktopFooter() {
+  return (
+    <div className={styles.desktopFooter}>
+      <div className={styles.desktopFooterInner}>
+        <div className={styles.desktopFooterLeft}>
+          <img src="/images/red101-logo.svg" alt="Red101" className={styles.desktopFooterLogo} />
+          <a href="mailto:customerservice@redcloudtechnology.com" className={styles.desktopFooterEmail}>customerservice@redcloudtechnology.com</a>
+          <div className={styles.desktopFooterHours}>9:00AM - 5:30PM</div>
+          <div className={styles.desktopFooterHours}>Mondays to Fridays (except Public Holidays)</div>
+        </div>
+        <div className={styles.desktopFooterCol}>
+          <h4 className={styles.desktopFooterColTitle}>Support</h4>
+          <a href="#" className={styles.desktopFooterLink}>FAQ</a>
+          <a href="#" className={styles.desktopFooterLink}>Shipping &amp; Returns</a>
+          <a href="#" className={styles.desktopFooterLink}>Payments</a>
+          <a href="#" className={styles.desktopFooterLink}>Your Orders</a>
+        </div>
+        <div className={styles.desktopFooterCol}>
+          <h4 className={styles.desktopFooterColTitle}>About</h4>
+          <a href="#" className={styles.desktopFooterLink}>Our company</a>
+          <a href="#" className={styles.desktopFooterLink}>Become a Seller</a>
+        </div>
+      </div>
+      <div className={styles.desktopFooterBottom}>
+        <div className={styles.desktopFooterSocials}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="white" strokeWidth="1.2"/><path d="M12 3V7H10.5C10 7 10 7.5 10 8V10H12L11.5 13H10V20" stroke="white" strokeWidth="1.2"/></svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="white" strokeWidth="1.2"/><path d="M6 9V14M6 6V6.01M10 14V10C10 8.9 10.9 8 12 8C13.1 8 14 8.9 14 10V14" stroke="white" strokeWidth="1.2" strokeLinecap="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="5" stroke="white" strokeWidth="1.2"/><circle cx="10" cy="10" r="4" stroke="white" strokeWidth="1.2"/><circle cx="15" cy="5" r="1" fill="white"/></svg>
+        </div>
+        <div className={styles.desktopFooterCopyright}>
+          &copy; Redcloud.Ltd All rights reserved
+        </div>
+        <div className={styles.desktopFooterLegal}>
+          <a href="#">Privacy policy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
     </div>
   );
 }
@@ -332,21 +432,23 @@ export default function CartPage() {
   }, [view]);
 
   // ── Coupon UI ──
-  function CouponUI() {
+  function CouponUI({ variant }: { variant?: 'sidebar' }) {
+    const isDesktopSidebar = variant === 'sidebar';
+
     if (coupon.status === 'applied' && !coupon.isExpanded) {
       return (
-        <div className={styles.couponSection}>
-          <button className={styles.couponToggle} onClick={() => setCoupon(prev => ({ ...prev, isExpanded: true }))}>
-            Apply coupon code <span className={styles.couponArrow}>{'\u25BC'}</span>
+        <div className={isDesktopSidebar ? styles.sidebarCouponSection : styles.couponSection}>
+          <button className={isDesktopSidebar ? styles.sidebarCouponToggle : styles.couponToggle} onClick={() => setCoupon(prev => ({ ...prev, isExpanded: true }))}>
+            {isDesktopSidebar ? 'Coupon code' : 'Apply coupon code'} <span className={styles.couponArrow}>{'\u25BC'}</span>
           </button>
         </div>
       );
     }
 
     return (
-      <div className={styles.couponSection}>
-        <button className={styles.couponToggle} onClick={() => setCoupon(prev => ({ ...prev, isExpanded: !prev.isExpanded }))}>
-          Apply coupon code{' '}
+      <div className={isDesktopSidebar ? styles.sidebarCouponSection : styles.couponSection}>
+        <button className={isDesktopSidebar ? styles.sidebarCouponToggle : styles.couponToggle} onClick={() => setCoupon(prev => ({ ...prev, isExpanded: !prev.isExpanded }))}>
+          {isDesktopSidebar ? 'Coupon code' : 'Apply coupon code'}{' '}
           <span className={`${styles.couponArrow} ${coupon.isExpanded ? styles.couponArrowUp : ''}`}>
             {'\u25BC'}
           </span>
@@ -389,7 +491,69 @@ export default function CartPage() {
     );
   }
 
-  // ── Checkout Footer ──
+  // ── Desktop Order Summary Sidebar ──
+  function DesktopOrderSummary() {
+    return (
+      <div className={styles.desktopSidebar}>
+        <h2 className={styles.sidebarTitle}>ORDER SUMMARY</h2>
+        <CouponUI variant="sidebar" />
+
+        {coupon.status === 'applied' && (
+          <>
+            <div className={styles.sidebarRow}>
+              <span className={styles.sidebarLabel}>Subtotal</span>
+              <span className={styles.sidebarValue}>${subtotal.toFixed(2)}</span>
+            </div>
+            <div className={styles.sidebarRow}>
+              <span className={styles.sidebarLabel}>Coupon -{coupon.discountPercent}%</span>
+              <span className={`${styles.sidebarValue} ${styles.sidebarDiscount}`}>-${couponDiscount.toFixed(2)}</span>
+            </div>
+          </>
+        )}
+
+        <div className={styles.sidebarTotalRow}>
+          <span className={styles.sidebarTotalLabel}>Est. total</span>
+          <span className={styles.sidebarTotalValue}>${estimatedTotal.toFixed(2)}</span>
+        </div>
+
+        <button
+          className={`${styles.sidebarCheckoutBtn} ${canCheckout ? styles.sidebarCheckoutBtnEnabled : styles.sidebarCheckoutBtnDisabled}`}
+          disabled={!canCheckout}
+          onClick={() => router.push('/checkout')}
+        >
+          Checkout
+        </button>
+
+        <div className={styles.sidebarShipping}>
+          {hasFreeShipping ? (
+            <>
+              <div className={styles.sidebarShippingTotal}>
+                <span>Est. total</span>
+                <span>${estimatedTotal.toFixed(2)}</span>
+              </div>
+              <div className={styles.sidebarShippingBarWrap}>
+                <div className={styles.sidebarShippingBar}><div className={styles.sidebarShippingBarFill} style={{ width: '100%' }} /></div>
+              </div>
+              <div className={styles.sidebarShippingText} style={{ color: '#0d7c3d' }}>You&apos;ve unlocked FREE SHIPPING on this order!</div>
+            </>
+          ) : (
+            <>
+              <div className={styles.sidebarShippingTotal}>
+                <span>Est. total</span>
+                <span>${estimatedTotal.toFixed(2)}</span>
+              </div>
+              <div className={styles.sidebarShippingBarWrap}>
+                <div className={styles.sidebarShippingBar}><div className={`${styles.sidebarShippingBarFill} ${styles.sidebarShippingBarFillPartial}`} style={{ width: `${Math.min(100, (estimatedTotal / freeShippingThreshold) * 100)}%` }} /></div>
+              </div>
+              <div className={styles.sidebarShippingText}>${freeShippingThreshold.toFixed(0)} for free shipping, ${(freeShippingThreshold - estimatedTotal).toFixed(2)} to go</div>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // ── Checkout Footer (mobile only) ──
   function CheckoutFooter({ shippingContext }: { shippingContext?: { supplierTotal: number; minimum: number } }) {
     const showCouponBreakdown = coupon.status === 'applied';
     return (
@@ -433,6 +597,36 @@ export default function CartPage() {
     );
   }
 
+  // ── Desktop supplier expanded item row (for inline use) ──
+  function DesktopCartItemRow({ item, supplierId }: { item: typeof suppliers[0]['items'][0]; supplierId: string }) {
+    return (
+      <div className={styles.cartItemRow}>
+        <img src={item.image} alt={item.name} className={styles.cartItemImage} />
+        <div className={styles.cartItemInfo}>
+          <div className={styles.cartItemName}>{item.name}</div>
+          {item.description && <div className={styles.cartItemDesc}>{item.description}</div>}
+          <div className={styles.cartItemMinOrder}>Min order quantity: {item.quantity}</div>
+          <div className={styles.itemActions}>
+            <span className={`${styles.itemActionLink} ${styles.saveLink}`} onClick={() => saveForLater(supplierId, item.id)}>Save for later</span>
+            <span className={`${styles.itemActionLink} ${styles.removeLink}`} onClick={() => removeItem(supplierId, item.id)}>Remove</span>
+          </div>
+        </div>
+        <div className={styles.cartItemRight}>
+          <div className={styles.cartItemPrices}>
+            <span className={styles.cartItemPrice}>${(item.price * item.quantity).toFixed(2)}</span>
+            {item.originalPrice && <span className={styles.cartItemOriginalPrice}>${item.originalPrice.toFixed(2)}</span>}
+            <span className={styles.cartItemUnitPrice}>{item.unitPrice}</span>
+          </div>
+          <div className={styles.quantityControl}>
+            <button className={styles.quantityBtn} onClick={() => updateQuantity(supplierId, item.id, -1)}>&minus;</button>
+            <span className={styles.quantityValue}>{item.quantity}</span>
+            <button className={styles.quantityBtn} onClick={() => updateQuantity(supplierId, item.id, 1)}>+</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // ═══════════════════════════════════════════════════════
   // RENDER
   // ═══════════════════════════════════════════════════════
@@ -446,61 +640,134 @@ export default function CartPage() {
         </div>
       ))}
 
-      <StatusBar />
+      {/* Mobile status bar */}
+      <div className={styles.mobileOnly}><StatusBar /></div>
+
+      {/* Desktop header */}
+      <div className={styles.desktopOnly}><DesktopHeader /></div>
 
       {/* ════════════════════════════════════════════════════
          VIEW: EMPTY CART
          ════════════════════════════════════════════════════ */}
       {view === 'main' && isEmpty && (
         <>
-          <div className={styles.header}><h1 className={styles.headerTitle}>Cart</h1></div>
+          <div className={styles.mobileOnly}>
+            <div className={styles.header}><h1 className={styles.headerTitle}>Cart</h1></div>
+          </div>
+          {/* Desktop breadcrumb */}
+          <div className={styles.desktopOnly}>
+            <div className={styles.desktopBreadcrumb}>
+              <span className={styles.breadcrumbLink}>Home</span>
+              <span className={styles.breadcrumbSep}>&gt;</span>
+              <span className={styles.breadcrumbCurrent}>My Cart</span>
+            </div>
+            <h1 className={styles.desktopPageTitle}>My Cart</h1>
+          </div>
           <div className={styles.emptyState}>
             <ShoppingCartBigIcon />
-            <h2 className={styles.emptyTitle}>Your cart is empty.</h2>
+            <h2 className={styles.emptyTitle}>Your cart is empty</h2>
             <p className={styles.emptySubtitle}>Add items to get started</p>
-            <button className={styles.emptyButton} onClick={resetCart}>Search items</button>
+            <button className={styles.emptyButton} onClick={resetCart}>Shop now</button>
           </div>
-          <div className={styles.bottomCheckout} style={{ borderTop: 'none' }}>
-            <BottomNav totalItems={0} />
+          <div className={styles.mobileOnly}>
+            <div className={styles.bottomCheckout} style={{ borderTop: 'none' }}>
+              <BottomNav totalItems={0} />
+            </div>
           </div>
+          <div className={styles.desktopOnly}><DesktopFooter /></div>
         </>
       )}
 
       {/* ════════════════════════════════════════════════════
          VIEW: MAIN CART (collapsed supplier cards)
-         States: Disabled checkout, Enable checkout, Coupon states, Expand page
          ════════════════════════════════════════════════════ */}
       {view === 'main' && !isEmpty && (
         <>
-          <div className={styles.header}><h1 className={styles.headerTitle}>Cart</h1></div>
-          <div className={styles.alertBanner}>
-            You&apos;re almost there! Meet each supplier&apos;s minimum order value to check out. Items below it will move to your wish list
+          {/* Mobile header */}
+          <div className={styles.mobileOnly}>
+            <div className={styles.header}><h1 className={styles.headerTitle}>Cart</h1></div>
+            <div className={styles.alertBanner}>
+              You&apos;re almost there! Meet each supplier&apos;s minimum order value to check out. Items below it will move to your wish list
+            </div>
           </div>
-          <div className={styles.scrollArea}>
-            {suppliers.map(supplier => {
-              const supplierTotal = supplier.items.reduce((s, i) => s + i.price * i.quantity, 0);
-              const itemCount = supplier.items.reduce((a, i) => a + i.quantity, 0);
 
-              return (
-                <div key={supplier.id} className={styles.supplierCard} onClick={() => openSupplierExpanded(supplier.id)}>
-                  <div className={styles.supplierHeader}>
-                    <span className={styles.supplierName}>{supplier.name} <span className={styles.supplierItemCount}>({itemCount})</span></span>
-                  </div>
-                  <div className={styles.supplierThumbnails}>
-                    {supplier.items.slice(0, 4).map(item => (
-                      <img key={item.id} src={item.image} alt={item.name} className={styles.thumbnail} />
-                    ))}
-                    {itemCount > 4 && <div className={styles.thumbnailMore}>{itemCount - 4}+</div>}
-                  </div>
-                  <ProgressIndicator current={supplierTotal} minimum={supplier.minimumOrderValue} />
-                  <button className={styles.addMoreBtn} onClick={(e) => e.stopPropagation()}>Add more items</button>
-                </div>
-              );
-            })}
-            <SuggestedItems />
-            <CouponUI />
+          {/* Desktop breadcrumb + title */}
+          <div className={styles.desktopOnly}>
+            <div className={styles.desktopBreadcrumb}>
+              <span className={styles.breadcrumbLink}>Home</span>
+              <span className={styles.breadcrumbSep}>/</span>
+              <span className={styles.breadcrumbCurrent}>My Cart</span>
+            </div>
+            <h1 className={styles.desktopPageTitle}>My Cart</h1>
+            <div className={styles.desktopAlertBanner}>
+              Distributors must meet the minimum order requirement to proceed to checkout.
+            </div>
           </div>
-          <CheckoutFooter />
+
+          {/* Desktop two-column layout */}
+          <div className={styles.desktopTwoCol}>
+            <div className={styles.desktopMainCol}>
+              <div className={styles.scrollArea}>
+                {/* Supplier cards — collapsed on mobile, expanded on desktop */}
+                {suppliers.map(supplier => {
+                  const supplierTotal = supplier.items.reduce((s, i) => s + i.price * i.quantity, 0);
+                  const itemCount = supplier.items.reduce((a, i) => a + i.quantity, 0);
+
+                  return (
+                    <div key={supplier.id}>
+                      {/* Mobile collapsed card */}
+                      <div className={`${styles.supplierCard} ${styles.mobileOnly}`} onClick={() => openSupplierExpanded(supplier.id)}>
+                        <div className={styles.supplierHeader}>
+                          <span className={styles.supplierName}>{supplier.name} <span className={styles.supplierItemCount}>({itemCount})</span></span>
+                        </div>
+                        <div className={styles.supplierThumbnails}>
+                          {supplier.items.slice(0, 4).map(item => (
+                            <img key={item.id} src={item.image} alt={item.name} className={styles.thumbnail} />
+                          ))}
+                          {itemCount > 4 && <div className={styles.thumbnailMore}>{itemCount - 4}+</div>}
+                        </div>
+                        <ProgressIndicator current={supplierTotal} minimum={supplier.minimumOrderValue} />
+                        <button className={styles.addMoreBtn} onClick={(e) => e.stopPropagation()}>Add more items</button>
+                      </div>
+
+                      {/* Desktop expanded card with full item rows */}
+                      <div className={`${styles.desktopSupplierCard} ${styles.desktopOnly}`}>
+                        <div className={styles.desktopSupplierHeader}>
+                          <span className={styles.desktopSupplierName}>{supplier.name}</span>
+                          <ChevronRightIcon />
+                        </div>
+                        {supplier.items.map(item => (
+                          <DesktopCartItemRow key={item.id} item={item} supplierId={supplier.id} />
+                        ))}
+                        <div className={styles.desktopSupplierFooter}>
+                          <div className={styles.desktopSubtotalRow}>
+                            <span className={styles.desktopSubtotalLabel}>Subtotal</span>
+                            <span className={styles.desktopSubtotalValue}>${supplierTotal.toFixed(2)}</span>
+                          </div>
+                          <ProgressIndicator current={supplierTotal} minimum={supplier.minimumOrderValue} />
+                          <button className={styles.addMoreBtn}>Add more items</button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                <SuggestedItems />
+                <div className={styles.mobileOnly}><CouponUI /></div>
+              </div>
+            </div>
+
+            {/* Desktop sidebar */}
+            <div className={`${styles.desktopSidebarCol} ${styles.desktopOnly}`}>
+              <DesktopOrderSummary />
+            </div>
+          </div>
+
+          {/* Mobile checkout footer */}
+          <div className={styles.mobileOnly}><CheckoutFooter /></div>
+
+          {/* Desktop footer */}
+          <div className={styles.desktopOnly}><DesktopFooter /></div>
         </>
       )}
 
