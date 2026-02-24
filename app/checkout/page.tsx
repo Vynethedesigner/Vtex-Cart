@@ -231,7 +231,7 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<'pay-at-delivery' | 'redpay'>('pay-at-delivery');
   const [sameAsBilling, setSameAsBilling] = useState(true);
   const [showOrderDetails, setShowOrderDetails] = useState(false);
-  const [fulfilmentConfirmed, setFulfilmentConfirmed] = useState(false);
+  const [fulfilmentConfirmed, setFulfilmentConfirmed] = useState(true);
   const [showPickupModal, setShowPickupModal] = useState(false);
   const [selectedPickupAddress, setSelectedPickupAddress] = useState<string>('pa-1');
   const [deliveryNotes, setDeliveryNotes] = useState('');
@@ -564,15 +564,6 @@ export default function CheckoutPage() {
         />
       </div>
 
-      <button
-        className={`${styles.continueBtn} ${address.contactName ? styles.continueBtnEnabled : styles.continueBtnDisabled}`}
-        onClick={() => {
-          if (addressMode === 'form') setAddressMode('saved');
-          setFulfilmentConfirmed(true);
-        }}
-      >
-        Continue
-      </button>
     </>
   );
 
@@ -651,7 +642,6 @@ export default function CheckoutPage() {
         </div>
       ))}
 
-      <button className={`${styles.continueBtn} ${styles.continueBtnEnabled}`} onClick={() => setFulfilmentConfirmed(true)}>Continue</button>
     </>
   );
 
