@@ -348,42 +348,52 @@
   aspect-ratio: 16 / 7;
   border-radius: 12px;
   overflow: hidden;
-  background: linear-gradient(135deg, #1a5c2e 0%, #ffc107 50%, #e53935 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .bannerImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.bannerPlaceholder {
-  text-align: center;
-  color: white;
-  font-size: 24px;
-  font-weight: 800;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  padding: 20px;
-  line-height: 1.3;
+  pointer-events: none;
 }
 .bannerDots {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
+  z-index: 2;
+}
+.bannerIndicators {
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
-  padding-top: 10px;
+  background: rgba(31, 31, 31, 0.16);
+  border-radius: 9999px;
+  padding: 4px 8px;
 }
 .bannerDot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #d0d5dd;
+  background: #ffffff;
   border: none;
   cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
 }
 .bannerDotActive {
-  background: #051c40;
+  background: #1f1f1f;
+}
+.bannerDotSmall {
+  width: 6px;
+  height: 6px;
+}
+.bannerDotTiny {
+  width: 4px;
+  height: 4px;
 }
 .bannerArrow {
   position: absolute;
@@ -806,17 +816,19 @@
   .bannerSection {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 16px 80px 24px;
+    padding: 16px 0 24px;
   }
   .bannerWrap {
-    aspect-ratio: 16 / 5;
-    border-radius: 16px;
+    aspect-ratio: 1440 / 405;
+    border-radius: 0;
   }
   .bannerArrow {
     display: flex;
   }
-  .bannerPlaceholder {
-    font-size: 40px;
+  .bannerDots {
+    justify-content: flex-start;
+    left: 80px;
+    width: auto;
   }
 
   /* ── Desktop Footer ── */

@@ -374,23 +374,22 @@ export default function HomePage() {
         {/* Banner */}
         <div className={styles.bannerSection}>
           <div className={styles.bannerWrap}>
-            <div className={styles.bannerPlaceholder}>
-              HELLMANN&apos;S<br />
-              M&Aacute;S SUAVE. M&Aacute;S CREMOSA.<br />
-              <span style={{ fontSize: '60%', fontWeight: 600 }}>PRU&Eacute;BALA AQU&Iacute;.</span>
-            </div>
+            <img src="/images/banner-hellmanns.png" alt="Hellmann's — Más suave. Más cremosa." className={styles.bannerImage} />
             <button className={`${styles.bannerArrow} ${styles.bannerArrowLeft}`}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </button>
             <button className={`${styles.bannerArrow} ${styles.bannerArrowRight}`}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </button>
-          </div>
-          <div className={styles.bannerDots}>
-            <button className={`${styles.bannerDot} ${styles.bannerDotActive}`} />
-            <button className={styles.bannerDot} />
-            <button className={styles.bannerDot} />
-            <button className={styles.bannerDot} />
+            <div className={styles.bannerDots}>
+              <div className={styles.bannerIndicators}>
+                <button className={`${styles.bannerDot} ${styles.bannerDotActive}`} />
+                <button className={styles.bannerDot} />
+                <button className={styles.bannerDot} />
+                <button className={`${styles.bannerDot} ${styles.bannerDotSmall}`} />
+                <button className={`${styles.bannerDot} ${styles.bannerDotTiny}`} />
+              </div>
+            </div>
           </div>
         </div>
 
