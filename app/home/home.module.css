@@ -756,7 +756,11 @@
   .productScrollRow {
     gap: 16px;
     padding: 0;
-    overflow: hidden;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .productScrollRow::-webkit-scrollbar {
+    display: none;
   }
   .scrollArrow {
     position: absolute;

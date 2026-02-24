@@ -294,6 +294,32 @@ function ProductCard({ product }: { product: HomeProduct }) {
 /* ── Product Section ── */
 function ProductSection({ title, products, sectionId }: { title: string; products: HomeProduct[]; sectionId: string }) {
   const router = useRouter();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateArrows = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    updateArrows();
+    el.addEventListener('scroll', updateArrows, { passive: true });
+    return () => el.removeEventListener('scroll', updateArrows);
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const scrollAmount = el.clientWidth * 0.75;
+    el.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+  };
+
   return (
     <div className={styles.section}>
       <div className={styles.sectionHeader}>
@@ -312,12 +338,19 @@ function ProductSection({ title, products, sectionId }: { title: string; product
       {/* Desktop: horizontal scroll with arrows */}
       <div className={styles.desktopOnly}>
         <div className={styles.productScrollContainer}>
-          <div className={styles.productScrollRow}>
+          <div className={styles.productScrollRow} ref={scrollRef}>
             {products.map(p => <ProductCard key={p.id} product={p} />)}
           </div>
-          <button className={styles.scrollArrow + ' ' + styles.scrollArrowRight}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </button>
+          {canScrollLeft && (
+            <button className={styles.scrollArrow + ' ' + styles.scrollArrowLeft} onClick={() => scroll('left')}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          )}
+          {canScrollRight && (
+            <button className={styles.scrollArrow + ' ' + styles.scrollArrowRight} onClick={() => scroll('right')}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#1f1f1f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          )}
         </div>
       </div>
     </div>
